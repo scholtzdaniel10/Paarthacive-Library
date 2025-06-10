@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const authorRoutes = require('./routes/authorRoutes');
 const bookRoutes = require('./routes/bookRoutes');
+const userRoutes = require('./routes/userRoutes');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
@@ -23,6 +24,7 @@ mongoose.connect('mongodb://localhost:27017/library', {
 // Routes
 app.use('/api/authors', authorRoutes);
 app.use('/api/books', bookRoutes);
+app.use('/api/users', userRoutes);
 
 // Start the server
 const PORT = process.env.PORT || 5000;

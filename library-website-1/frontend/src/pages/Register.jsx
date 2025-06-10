@@ -13,8 +13,22 @@ const Register = () => {
       setError("Passwords do not match");
       return;
     }
-    // Add logic to handle registration (e.g., API call)
-    // Reset form fields after successful registration
+    try {
+      const response = await fetch('/api/users/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, email, password })
+      });
+      const data = await response.json();
+      if (!response.ok) {
+        setError(data.message || 'Registration failed');
+      } else {
+        setError('');
+        // Optionally redirect or show success
+      }
+    } catch (err) {
+      setError('Registration failed');
+    }
   };
 
   return (
